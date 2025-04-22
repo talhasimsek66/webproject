@@ -1,0 +1,67 @@
+{% extends 'home.html' %}
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+{% block content %}
+
+<style>
+  .card {
+    width: 22rem;
+    min-height: 20rem;
+  }
+</style>
+
+<div class="container-fluid px-5 py-5">
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 gx-4 gy-5 justify-content-center">
+    {% for passport in passports %}
+      <div class="col text-center">
+        <div class="card border-primary shadow-sm mx-auto">
+          <img src="{{ passport.image }}" class="card-img-top" alt="{{ passport.name }}">
+          <div class="card-body">
+            <div class="card-content" id="content{{ forloop.counter }}">
+              <h5 class="card-title fw-bold">{{ passport.name }}</h5>
+              <p class="card-text">{{ passport.continent.name }}</p>
+              <button class="btn btn-primary w-100" onclick="toggleCard({{ forloop.counter }})">Select</button>
+            </div>
+            <div class="card-links d-none" id="links{{ forloop.counter }}">
+              <a href="https://google.com" class="d-block text-primary mb-2">Countries</a>
+              <button class="btn btn-secondary btn-sm mt-3" onclick="toggleCard({{ forloop.counter }})">Return</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+<script>
+  function toggleCard(id) {
+    const content = document.getElementById(`content${id}`);
+    const links = document.getElementById(`links${id}`);
+
+    if (content.classList.contains('d-none')) {
+      content.classList.remove('d-none');
+      links.classList.add('d-none');
+    } else {
+      content.classList.add('d-none');
+      links.classList.remove('d-none');
+      links.classList.add('animate__animated', 'animate__fadeIn');
+    }
+  }
+</script>
+{% endblock %}
+
+
+
+</body>
+</html>

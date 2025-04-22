@@ -1,0 +1,106 @@
+{% extends 'home.html' %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+  <title>Countries</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #1e3c72, #2a5298);
+      color: white;
+    }
+    .card-country {
+      background-color: #ffffff;
+      border-radius: 1rem;
+      overflow: hidden;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+      transition: transform 0.2s ease;
+    }
+    .card-country:hover {
+      transform: translateY(-5px);
+    }
+    .card-img-top {
+      max-height: 180px;
+      object-fit: contain;
+      background: #f5f5f5;
+      padding: 1rem;
+    }
+    .btn-toggle {
+      transition: 0.3s;
+    }
+  </style>
+</head>
+
+<body>
+{% block content %}
+
+<div class="container py-5">
+  <div class="text-center mb-5">
+    <h1 class="display-4 fw-bold animate__animated animate__fadeInDown">🌍 Countries Explorer</h1>
+    <p class="fs-5 animate__animated animate__fadeInUp">Discover countries and explore continent info & useful links.</p>
+  </div>
+
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
+    {% for country in countries %}
+      <div class="col">
+        <div class="card card-country h-100 text-center">
+          <img src="{{ country.image }}" class="card-img-top" alt="{{ country.name }}">
+          <div class="card-body d-flex flex-column justify-content-between">
+            <div id="content{{ forloop.counter }}">
+              <h5 class="card-title fw-bold">{{ country.name }}</h5>
+              <p class="card-text text-muted mb-4">Continent: {{ country.Continent.name }}</p>
+              <button class="btn btn-primary w-100 btn-toggle" onclick="toggleCard({{ forloop.counter }})">Select</button>
+            </div>
+            <div class="d-none" id="links{{ forloop.counter }}">
+  <a href="https://en.wikipedia.org/wiki/{{ country.name|urlencode }}#Transportation"
+     class="d-block text-primary mb-2" target="_blank">
+     🚆 Transportation
+  </a>
+  <a href="https://en.wikipedia.org/wiki/Culture_of_{{ country.name|urlencode }}"
+     class="d-block text-primary mb-2" target="_blank">
+     🎎 Culture
+  </a>
+  <a href="https://en.wikipedia.org/wiki/History_of_{{ country.name|urlencode }}"
+     class="d-block text-primary mb-2" target="_blank">
+     📚 History
+  </a>
+  <a href="https://en.wikipedia.org/wiki/{{ country.name|urlencode }}#Climate"
+     class="d-block text-primary mb-2" target="_blank">
+     🌦️ Climate
+  </a>
+  <a href="https://en.wikipedia.org/wiki/{{ country.name|urlencode }}#Geography"
+     class="d-block text-primary mb-2" target="_blank">
+     🗺️ Geography
+  </a>
+  <button class="btn btn-outline-secondary btn-sm mt-3 w-100 btn-toggle"
+          onclick="toggleCard({{ forloop.counter }})">Go Back</button>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+<script>
+  function toggleCard(id) {
+    const content = document.getElementById(`content${id}`);
+    const links = document.getElementById(`links${id}`);
+
+    content.classList.toggle('d-none');
+    links.classList.toggle('d-none');
+    links.classList.add('animate__animated', 'animate__fadeIn');
+  }
+</script>
+{% endblock %}
+</body>
+</html>

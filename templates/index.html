@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <title>index</title>
+    <style>
+      body {
+        margin: 0;
+        font-family: 'Segoe UI', sans-serif;
+        background: linear-gradient(135deg, #1e3c72, #2a5298);
+        overflow-x: hidden;
+      }
+      #globeViz {
+        width: 350px;
+        height: 350px;
+        margin: 0 auto 30px auto;
+      }
+    </style>
+</head>
+<body>
+{% include 'partials/navbar.html' %}
+
+<!-- Karşılama Sayfası -->
+<section class="d-flex align-items-center justify-content-center vh-100 text-center text-white flex-column">
+  <!-- 3D Küre Alanı -->
+  <div id="globeViz" class="animate__animated animate__zoomIn"></div>
+
+  <div>
+    <h1 class="display-2 fw-bold mb-4 animate__animated animate__fadeInDown">Where can you go?</h1>
+    <p class="fs-5 animate__animated animate__fadeInUp">Discover countries and passport options from all around the world.</p>
+    <a href="/passport/filter/" class="btn btn-light btn-lg mt-4 shadow-sm animate__animated animate__fadeInUp">Start Exploring</a>
+  </div>
+</section>
+
+<!-- Globe.gl -->
+<script src="https://unpkg.com/three@0.153.0/build/three.min.js"></script>
+<script src="https://unpkg.com/globe.gl"></script>
+<script>
+  const myGlobe = Globe()(document.getElementById('globeViz'))
+    .globeImageUrl('//unpkg.com/three-globe/example/img/earth-night.jpg')
+    .backgroundColor('rgba(0,0,0,0)')
+    .width(350)
+    .height(350);
+</script>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
