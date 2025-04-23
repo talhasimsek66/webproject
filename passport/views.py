@@ -1,27 +1,19 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from passport.models import Country, Passport_type
-from passport.forms import PassportFilterForm
+from passport.forms import PassportFilterForm,CountryForm
 
 
 def index(request):
-    return render(request, 'home.html')
-
-def exchange(request):
-    return HttpResponse('kurs verisi')
+    return render(request, 'index.html')
 
 def country_list(request):
     countries = Country.objects.all()
     return render(request, 'countries.html', {'countries': countries})
 
-
-
 def passport_list(request):
     passports = Passport_type.objects.all()
     return render(request, 'passport_list.html',{'passports': passports})
-
-def forum(request):
-    return render(request, 'forum.html')
 
 def filter_by_passport(request):
     form = PassportFilterForm(request.GET or None)
@@ -33,3 +25,13 @@ def filter_by_passport(request):
 
     return render(request, 'filter_results.html', {'form': form, 'countries': countries})
 
+
+def add_country(request):
+    if request.method == 'POST':
+        form = CountryForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('/passport/countries')  # veya başka bir sayfa
+    else:
+        form = CountryForm()
+    return render(request, 'add_country.html', {'form': form})
