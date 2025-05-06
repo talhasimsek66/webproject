@@ -1,7 +1,7 @@
-from django.shortcuts import render, redirect
-from django.http import HttpResponse
+from django.shortcuts import render, redirect, get_object_or_404
+from django.http import HttpResponse, HttpResponseRedirect
 from passport.models import Country, Passport_type
-from passport.forms import PassportFilterForm,CountryForm
+from passport.forms import PassportFilterForm, CountryForm
 
 
 def index(request):
@@ -35,3 +35,18 @@ def add_country(request):
     else:
         form = CountryForm()
     return render(request, 'add_country.html', {'form': form})
+
+def country_comment(request, slug):
+    post = get_object_or_404(Country, slug=slug)
+
+    form = CommentForm(request.POST or None)
+    if form.is_valid():
+        comment = form.save(commit=False)
+        comment.post = post
+        comment.save()
+        return HttpResponseRedirect(post.get_absolute_url())
+
+    context = {
+        "post": post,
+    }
+    return render(request, "countries.html", context)

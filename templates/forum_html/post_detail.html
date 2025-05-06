@@ -1,0 +1,106 @@
+{% extends 'home.html' %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{{ post.title }}</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #9aceda;
+            color: #333;
+        }
+        .post-header {
+            text-align: center;
+            margin-top: 2rem;
+        }
+        .post-header h1 {
+            font-size: 2.5rem;
+            color: #2a5298;
+        }
+        .post-content {
+            background-color: #fff;
+            padding: 1.5rem;
+            border-radius: 1rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        .comment-section {
+            margin-top: 3rem;
+        }
+        .comment-section h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+        }
+        .comment-card {
+            background-color: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 1rem;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+        .comment-card:hover {
+            transform: translateY(-5px);
+        }
+        .comment-card strong {
+            color: #2a5298;
+        }
+        .btn-comment {
+            background-color: #2a5298;
+            color: white;
+            border-radius: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            transition: background-color 0.3s;
+        }
+        .btn-comment:hover {
+            background-color: #1e3c72;
+        }
+    </style>
+</head>
+<body>
+{% block content %}
+<div class="container py-5">
+    <div class="post-header animate__animated animate__fadeInDown">
+        <h1>{{ post.title }}</h1>
+    </div>
+
+    <div class="post-content animate__animated animate__fadeInUp">
+        <p>{{ post.content }}</p>
+        <!-- <p>Posted on {{ post.date_posted }}</p> -->
+    </div>
+
+    <div class="comment-section">
+    <h2>Comments</h2>
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
+        {% for comment in comments %}
+            <div class="col">
+                <div class="comment-card animate__animated animate__fadeInUp">
+                    <p><strong>{{ comment.name }}</strong> ({{ comment.email }})</p>
+                    <p>{{ comment.body }}</p>
+                    <p>Added on {{ comment.date_added }}</p>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+    <h2>Add a comment</h2>
+    <form method="post" class="animate__animated animate__fadeIn">
+        {% csrf_token %}
+        <div class="mb-3">
+            {{ comment_form.as_p }}
+        </div>
+        <button type="submit" class="btn btn-primary">Add a comment</button>
+    </form>
+</div>
+
+</div>
+{% endblock %}
+</body>
+</html>
