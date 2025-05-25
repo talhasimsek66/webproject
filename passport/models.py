@@ -21,6 +21,7 @@ class Continent(models.Model):
     class Meta:
         verbose_name_plural = "Continents"
 
+
 class Country(models.Model):
     name = models.CharField(max_length=125)
     Continent = models.ForeignKey(
@@ -32,12 +33,14 @@ class Country(models.Model):
         'Passport_type',
         related_name='Countries'
     )
-    image = models.URLField(max_length=500)
+
 
     def __str__(self):
         return self.name
 
     class Meta:
         verbose_name_plural = "Countries"
+
+
 
 

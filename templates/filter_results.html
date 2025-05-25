@@ -49,7 +49,7 @@
         {% for country in countries %}
           <div class="col">
             <div class="card card-country h-100 text-center p-3">
-              <img src="{{ country.image }}" class="card-img-top rounded" alt="{{ country.name }}" style="max-height: 180px; object-fit: contain;">
+              <img src="{% static 'flag/' %}{{ country.name|lower }}.svg" class="card-img-top" alt="{{ country.name }}">
               <div class="card-body">
                 <h5 class="card-title fw-bold">{{ country.name }}</h5>
                 <p class="card-text text-muted">Continent: {{ country.Continent.name }}</p>

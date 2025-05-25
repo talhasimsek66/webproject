@@ -39,16 +39,18 @@
             margin-bottom: 1.5rem;
         }
         .comment-card {
-            background-color: #f8f9fa;
+            background-color: #f1f1f1; /* daha açık ve belirgin gri */
             padding: 1.5rem;
             border-radius: 1rem;
-            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+            border-left: 6px solid #2a5298; /* renkli vurgu çizgisi */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
             margin-bottom: 1.5rem;
             transition: transform 0.3s ease;
         }
         .comment-card:hover {
-            transform: translateY(-5px);
+            transform: scale(1.02);
         }
+
         .comment-card strong {
             color: #2a5298;
         }
@@ -73,18 +75,16 @@
 
     <div class="post-content animate__animated animate__fadeInUp">
         <p>{{ post.content }}</p>
-        <!-- <p>Posted on {{ post.date_posted }}</p> -->
     </div>
 
     <div class="comment-section">
-    <h2>Comments</h2>
+    <h2 style="margin-bottom: 20px;">Comments</h2>
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
         {% for comment in comments %}
             <div class="col">
                 <div class="comment-card animate__animated animate__fadeInUp">
                     <p><strong>{{ comment.name }}</strong> ({{ comment.email }})</p>
                     <p>{{ comment.body }}</p>
-                    <p>Added on {{ comment.date_added }}</p>
                 </div>
             </div>
         {% endfor %}

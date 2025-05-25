@@ -55,7 +55,7 @@
     {% for country in countries %}
       <div class="col">
         <div class="card card-country h-100 text-center">
-          <img src="{{ country.image }}" class="card-img-top" alt="{{ country.name }}">
+          <img src="{% static 'flag/' %}{{ country.name|lower }}.svg" class="card-img-top" alt="{{ country.name }}">
           <div class="card-body d-flex flex-column justify-content-between">
             <div id="content{{ forloop.counter }}">
               <h5 class="card-title fw-bold">{{ country.name }}</h5>

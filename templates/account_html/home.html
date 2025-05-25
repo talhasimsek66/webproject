@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Account Ana Sayfası</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #ffffff;
+            font-family: 'Segoe UI', sans-serif;
+        }
+        .home-card {
+            background-color: #e3f2fd;
+            border-radius: 1rem;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            padding: 2rem;
+        }
+        .btn-custom {
+            background-color: #007bff;
+            color: white;
+        }
+        .btn-custom:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+{% include 'partials/navbar.html' %}
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 home-card text-center">
+            <h1 class="mb-4">👋 Hoş Geldiniz!</h1>
+            <p class="fs-5">Foruma katılmak için giriş yapabilir ya da yeni bir hesap oluşturabilirsiniz.</p>
+            <div class="d-flex justify-content-center gap-4 mt-4">
+                <a href="{% url 'login' %}" class="btn btn-custom px-4">Giriş Yap</a>
+                <a href="{% url 'register' %}" class="btn btn-outline-primary px-4">Kayıt Ol</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

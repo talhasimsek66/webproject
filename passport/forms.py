@@ -13,11 +13,10 @@ class PassportFilterForm(forms.Form):
 class CountryForm(forms.ModelForm):
     class Meta:
         model = Country
-        fields = ['name', 'Continent', 'Passport_type', 'image']
+        fields = ['name', 'Continent', 'Passport_type']
         widgets = {
             'name': forms.TextInput(attrs={'class': 'form-control'}),
             'Continent': forms.Select(attrs={'class': 'form-select'}),
             'Passport_types': forms.SelectMultiple(attrs={'class': 'form-select'}),
-            'image': forms.URLInput(attrs={'class': 'form-control'}),
         }
 

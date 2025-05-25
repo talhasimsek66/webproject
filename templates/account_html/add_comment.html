@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Yorum Ekle</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Segoe UI', sans-serif;
+        }
+        .comment-card {
+            background-color: #ffffff;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            padding: 2rem;
+        }
+        .btn-custom {
+            background-color: #007bff;
+            color: white;
+        }
+        .btn-custom:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+{% include 'partials/navbar.html' %}
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 comment-card">
+            <h2 class="mb-4 text-center">💬 Yorum Ekle</h2>
+            <form method="POST">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="content" class="form-label">Yorumunuz</label>
+                    <textarea name="content" rows="5" class="form-control" required></textarea>
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-custom">Gönder</button>
+                </div>
+            </form>
+            <div class="text-center mt-3">
+                <a href="{% url 'forum_page' %}" class="btn btn-outline-secondary">← Foruma Geri Dön</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

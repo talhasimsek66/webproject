@@ -45,7 +45,7 @@
     <div class="container py-5">
         <h1 class="text-center display-4 fw-bold">💬Forum</h1>
         <div class="text-center mb-4">
-            <a href="{% url 'post_new' %}" class="btn btn-primary">New Post</a>
+            <a href="{% url 'forum:post_new' %}" class="btn btn-primary">New Post</a>
         </div>
 
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
@@ -53,12 +53,10 @@
                 <div class="col">
                     <div class="post-card animate__animated animate__fadeInUp">
                         <div class="card-body">
-                            <h5 class="card-title">{{ post.title }}</h5>
-                            <p class="card-text">{{ post.date_posted }}</p>
+                            <h5 class="card-title" style="margin-bottom: 20px;">{{ post.title }}</h5>
                             <div class="d-flex justify-content-between">
-                                <a href="{% url 'post_detail' post.id %}" class="btn btn-secondary btn-sm">View</a>
-                                <a href="{% url 'post_edit' post.id %}" class="btn btn-warning btn-sm">Edit</a>
-                                <a href="{% url 'post_delete' post.id %}" class="btn btn-danger btn-sm">Delete</a>
+                                <a href="{% url 'forum:post_detail' post.id %}" class="btn btn-secondary btn-sm">Comment</a>
+                                <a href="{% url 'forum:post_delete' post.id %}" class="btn btn-danger btn-sm">Delete</a>
                             </div>
                         </div>
                     </div>
