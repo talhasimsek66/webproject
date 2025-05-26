@@ -4,9 +4,14 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from forum.models import Comment
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+from forum.models import Post
+
+
 
 def home(request):
-    return render(request, 'account_html/home.html')
+    posts = Post.objects.all()
+    return render(request, 'account_html/home.html', {'posts': posts})
 
 def register_view(request):
     if request.method == 'POST':
@@ -36,7 +41,7 @@ def login_view(request):
 
         if user is not None:
             login(request, user)
-            return redirect('forum:home')  # Bu kısmı 'forum_home' gibi URL name olarak bırak
+            return redirect('forum:home')
         else:
             messages.error(request, 'Kullanıcı adı veya şifre hatalı.')
 
@@ -45,7 +50,7 @@ def login_view(request):
 
 def logout_view(request):
     logout(request)
-    return redirect('login')
+    return redirect('account_home')
 
 @login_required
 def add_comment(request):

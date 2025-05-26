@@ -2,7 +2,7 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <title>Account Ana Sayfası</title>
+    <title>Account</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css">
     <style>
         body {
@@ -31,11 +31,11 @@
 <div class="container py-5">
     <div class="row justify-content-center">
         <div class="col-md-8 home-card text-center">
-            <h1 class="mb-4">👋 Hoş Geldiniz!</h1>
-            <p class="fs-5">Foruma katılmak için giriş yapabilir ya da yeni bir hesap oluşturabilirsiniz.</p>
+            <h1 class="mb-4">Welcome</h1>
+            <p class="fs-5">You can log in or create a new account to join the forum.</p>
             <div class="d-flex justify-content-center gap-4 mt-4">
-                <a href="{% url 'login' %}" class="btn btn-custom px-4">Giriş Yap</a>
-                <a href="{% url 'register' %}" class="btn btn-outline-primary px-4">Kayıt Ol</a>
+                <a href="{% url 'login' %}" class="btn btn-custom px-4">Log In</a>
+                <a href="{% url 'register' %}" class="btn btn-outline-primary px-4">Sign Up</a>
             </div>
         </div>
     </div>

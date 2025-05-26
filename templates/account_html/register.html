@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0">
-    <title>Register</title>
+    <title>Sign Up</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css">
 </head>
 <body>
@@ -14,9 +14,9 @@
     <div class="row justify-content-center">
         <div class="col-md-6">
             <div class="post-card p-4">
-                <h2 class="text-center mb-4">📝 Register</h2>
+                <h2 class="text-center mb-4">📝 Sign Up</h2>
 
-                <!-- Uyarı Mesajları -->
+
                 {% if messages %}
                     <div class="mb-3">
                         {% for message in messages %}
@@ -28,7 +28,7 @@
                     </div>
                 {% endif %}
 
-                <!-- Kayıt Formu -->
+
                 <form method="post">
                     {% csrf_token %}
                     <div class="mb-3">
@@ -44,7 +44,7 @@
                         <input type="password" name="password" class="form-control" required id="password">
                     </div>
                     <div class="text-center">
-                        <button type="submit" class="btn btn-custom">Register</button>
+                        <button type="submit" class="btn btn-custom">Sign Up</button>
                     </div>
                 </form>
 
@@ -53,7 +53,7 @@
     </div>
 </div>
 
-<!-- Bootstrap JS (mesajları kapatabilmek için gerekli) -->
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

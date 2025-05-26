@@ -1,68 +1,60 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Forum Home</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css">
-    <style>
-        body {
-            background-color: #ffffff;
-            font-family: 'Segoe UI', sans-serif;
-        }
-        .post-card {
-            background-color: #9dc4c6;
-            border-radius: 1rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-            transition: transform 0.2s ease-in-out;
-        }
-        .post-card:hover {
-            transform: translateY(-5px);
-        }
-        .card-body {
-            padding: 1.5rem;
-        }
-        .card-title {
-            font-size: 1.25rem;
-        }
-        .btn-custom {
-            background-color: #ff5733;
-            color: white;
-            border-radius: 0.3rem;
-            padding: 0.5rem 1rem;
-        }
-        .btn-custom:hover {
-            background-color: #ff4500;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Forum Home</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+  <style>
+    body {
+      background-color: #ffffff;
+      font-family: 'Segoe UI', sans-serif;
+    }
+    .post-card {
+      background-color: #ecf3f3;
+      border-radius: 1rem;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      transition: transform 0.2s ease-in-out;
+    }
+    .post-card:hover {
+      transform: translateY(-5px);
+    }
+    .card-body {
+      padding: 1.5rem;
+    }
+    .card-title {
+      font-size: 1.25rem;
+    }
+  </style>
 </head>
 <body>
-    {% include 'partials/navbar.html' %}
-
-    <div class="container py-5">
-        <h1 class="text-center display-4 fw-bold">💬Forum</h1>
-        <div class="text-center mb-4">
-            <a href="{% url 'forum:post_new' %}" class="btn btn-primary">New Post</a>
-        </div>
-
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
-            {% for post in posts %}
-                <div class="col">
-                    <div class="post-card animate__animated animate__fadeInUp">
-                        <div class="card-body">
-                            <h5 class="card-title" style="margin-bottom: 20px;">{{ post.title }}</h5>
-                            <div class="d-flex justify-content-between">
-                                <a href="{% url 'forum:post_detail' post.id %}" class="btn btn-secondary btn-sm">Comment</a>
-                                <a href="{% url 'forum:post_delete' post.id %}" class="btn btn-danger btn-sm">Delete</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            {% endfor %}
-        </div>
+  {% include 'partials/navbar.html' %}
+  <div class="container py-5">
+    <h1 class="text-center display-4 fw-bold">💬Forum</h1>
+    <div class="text-center mb-4">
+      <a href="{% url 'forum:post_new' %}" class="btn btn-primary">New Post</a>
     </div>
+
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
+      {% for post in posts %}
+        <div class="col">
+          <div class="post-card animate__animated animate__fadeInUp">
+            <div class="card-body">
+              <h5 class="card-title mb-3">{{ post.title }}</h5>
+              <div class="d-flex justify-content-between">
+                <a href="{% url 'forum:post_detail' post.id %}" class="btn btn-secondary btn-sm">Comment</a>
+                <a href="{% url 'forum:post_delete' post.id %}" class="btn btn-danger btn-sm">Delete</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
 </body>
 </html>

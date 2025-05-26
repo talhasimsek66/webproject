@@ -2,7 +2,7 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <title>Yorum Ekle</title>
+    <title>Add Comment</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css">
     <style>
         body {
@@ -31,19 +31,19 @@
 <div class="container py-5">
     <div class="row justify-content-center">
         <div class="col-md-8 comment-card">
-            <h2 class="mb-4 text-center">💬 Yorum Ekle</h2>
+            <h2 class="mb-4 text-center">💬 Add Comment</h2>
             <form method="POST">
                 {% csrf_token %}
                 <div class="mb-3">
-                    <label for="content" class="form-label">Yorumunuz</label>
+                    <label for="content" class="form-label">Your Comment</label>
                     <textarea name="content" rows="5" class="form-control" required></textarea>
                 </div>
                 <div class="text-center">
-                    <button type="submit" class="btn btn-custom">Gönder</button>
+                    <button type="submit" class="btn btn-custom">Submit</button>
                 </div>
             </form>
             <div class="text-center mt-3">
-                <a href="{% url 'forum_page' %}" class="btn btn-outline-secondary">← Foruma Geri Dön</a>
+                <a href="{% url 'forum_page' %}" class="btn btn-outline-secondary">← Back To Forum</a>
             </div>
         </div>
     </div>
